@@ -1,0 +1,335 @@
+{
+  "PORTADA": [],
+  "PUNTO 1": [
+    [
+      "B1",
+      "CURSOGRAMA"
+    ],
+    [
+      "I1",
+      "DIAGRAMA DE PROCEDENCIAS"
+    ],
+    [
+      "I2",
+      "Secuencia "
+    ],
+    [
+      "C3",
+      "Inicio  Tiempo: 0s"
+    ],
+    [
+      "I3",
+      1
+    ],
+    [
+      "J3",
+      "A"
+    ],
+    [
+      "C5",
+      "Retirar juego del estante "
+    ],
+    [
+      "I5",
+      2
+    ],
+    [
+      "J5",
+      "B"
+    ],
+    [
+      "I7",
+      3
+    ],
+    [
+      "J7",
+      "C"
+    ],
+    [
+      "C9",
+      "Comprobar referencia y piezas visibles"
+    ],
+    [
+      "I9",
+      4
+    ],
+    [
+      "J9",
+      "D"
+    ],
+    [
+      "I12",
+      5
+    ],
+    [
+      "J12",
+      "ENSAYO"
+    ],
+    [
+      "I14",
+      6
+    ],
+    [
+      "J14",
+      "E"
+    ],
+    [
+      "C15",
+      "Colocar junta y orientar carcasa"
+    ],
+    [
+      "C18",
+      "Colocar módulo cerrado y tapa"
+    ],
+    [
+      "C21",
+      "Asegurar cierre y liberar pieza"
+    ],
+    [
+      "C24",
+      "Pasar al banco"
+    ],
+    [
+      "H25",
+      "1)"
+    ],
+    [
+      "I25",
+      "B+C Ya que usan el mismo útil"
+    ],
+    [
+      "H26",
+      "2)"
+    ],
+    [
+      "I26",
+      "D + ENSAYO + E se utiliza elmismo banco de prueba"
+    ],
+    [
+      "C27",
+      "Conectar e iniciar prueba"
+    ],
+    [
+      "C30",
+      "Ensayo de señal"
+    ],
+    [
+      "C33",
+      "Resultado"
+    ],
+    [
+      "C36",
+      "Desconectar"
+    ],
+    [
+      "C39",
+      "Identificación de producto"
+    ],
+    [
+      "C42",
+      "Caja de salida"
+    ],
+    [
+      "C45",
+      "Fin."
+    ]
+  ],
+  "PUNTO 2": {
+    "observaciones": {
+      "A": [
+        19,
+        20,
+        21,
+        20,
+        19,
+        21
+      ],
+      "B": [
+        27,
+        29,
+        28,
+        28,
+        30,
+        26
+      ],
+      "C": [
+        39,
+        41,
+        40,
+        42,
+        38,
+        40
+      ],
+      "D": [
+        23,
+        25,
+        24,
+        24,
+        26,
+        22
+      ],
+      "E": [
+        17,
+        19,
+        18,
+        18,
+        20,
+        16
+      ]
+    },
+    "valoraciones": {
+      "A": 1,
+      "B": 1.1,
+      "C": 1,
+      "D": 0.95,
+      "E": 1
+    },
+    "suplemento": 1.15
+  },
+  "PUNTO 3": {
+    "elementos": {
+      "A": {
+        "descripcion": "Retirar y comprobar juego",
+        "observaciones": [
+          19,
+          20,
+          21,
+          20,
+          19,
+          21
+        ],
+        "valoracion": 1
+      },
+      "B": {
+        "descripcion": "Preparar y posicionar en útil",
+        "observaciones": [
+          27,
+          29,
+          28,
+          28,
+          30,
+          26
+        ],
+        "valoracion": 1
+      },
+      "C": {
+        "descripcion": "Montar, cerrar y liberar",
+        "observaciones": [
+          39,
+          41,
+          40,
+          42,
+          38,
+          40
+        ],
+        "valoracion": 1
+      },
+      "D": {
+        "descripcion": "Trasladar, conectar e iniciar prueba",
+        "observaciones": [
+          23,
+          25,
+          24,
+          24,
+          26,
+          22
+        ],
+        "valoracion": 0.95
+      },
+      "ENSAYO": {
+        "descripcion": "Banco; 30 s de reloj",
+        "tiempo": 30
+      },
+      "E": {
+        "descripcion": "Comprobar, desconectar y embalar",
+        "observaciones": [
+          17,
+          19,
+          18,
+          18,
+          20,
+          16
+        ],
+        "valoracion": 1
+      }
+    },
+    "particion1": {
+      "persona1": "A+B+C",
+      "carga": 101.2,
+      "persona2": "D+ENSAYO+E",
+      "carga2": 76.92
+    },
+    "particion2": {
+      "persona1": "A",
+      "carga": 156.5,
+      "persona2": "B+C+D+ENSAYO+E"
+    }
+  },
+  "PUNTO 4": {
+    "diagrama_hombre_maquina": [
+      [
+        0,
+        "Operario",
+        "Inicio de prueba y traslado"
+      ],
+      [
+        5,
+        "Operario",
+        "Pieza en banco de prueba"
+      ],
+      [
+        12,
+        "Operario",
+        "Conexión de prueba"
+      ],
+      [
+        26.22,
+        "Espera operario",
+        "Inicio de prueba automático"
+      ],
+      [
+        56.22,
+        "Operario",
+        "Resultado"
+      ],
+      [
+        62,
+        "Operario",
+        "Desconexión de pieza"
+      ],
+      [
+        68,
+        "Operario",
+        "Etiqueta de producto"
+      ],
+      [
+        76.92,
+        "Operario",
+        "Empaque final"
+      ]
+    ],
+    "ciclo": 76.92
+  },
+  "PUNTO 5": {
+    "ciclos_segundos": {
+      "Referencia": 90.8,
+      "A": 82.8,
+      "B": 72
+    },
+    "inversiones": {
+      "A": 180,
+      "B": 950
+    },
+    "coste_turno": {
+      "A": 9,
+      "B": 47.5
+    },
+    "turno_minutos": 420,
+    "demanda_ejemplo": 300
+  },
+  "PUNTO 6": {
+    "demanda_original": 308,
+    "demanda_adicional": 260,
+    "capacidad_referencia": 249
+  }
+}
