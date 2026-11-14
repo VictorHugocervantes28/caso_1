@@ -1,0 +1,69 @@
+<!doctype html>
+<html lang="es">
+<head>
+<meta charset="utf-8"><meta name="viewport" content="width=device-width,initial-scale=1">
+<title>Caso 1 Luciérnaga | Medición de capacidad</title>
+<style>
+:root{font-family:Inter,system-ui,Segoe UI,Arial,sans-serif;color:#182230;background:#f4f6f9}*{box-sizing:border-box}body{margin:0}.wrap{max-width:1100px;margin:auto;padding:28px 18px 48px}header{display:flex;justify-content:space-between;gap:20px;align-items:center;margin-bottom:22px}.eyebrow{font-size:12px;letter-spacing:.1em;text-transform:uppercase;color:#667085;font-weight:700}h1{font-size:30px;margin:6px 0}p{color:#536174;line-height:1.5}.panel{background:white;border:1px solid #e1e6ee;border-radius:16px;padding:20px;margin:16px 0;box-shadow:0 3px 12px #15223808}.inputs{display:grid;grid-template-columns:repeat(4,minmax(0,1fr));gap:14px}label{display:block;font-size:13px;font-weight:650;color:#344054;margin-bottom:7px}input,select{width:100%;padding:11px 12px;border:1px solid #cfd6e1;border-radius:9px;font:inherit;background:#fff}input:disabled{background:#f2f4f7;color:#98a2b3}.hint{font-size:12px;color:#667085;margin-top:6px}.grid{display:grid;grid-template-columns:repeat(4,minmax(0,1fr));gap:12px}.metric{border:1px solid #e3e8ef;border-radius:12px;padding:15px}.metric small{display:block;color:#667085;font-weight:600}.metric strong{font-size:25px;display:block;margin:6px 0}.metric span{font-size:12px;color:#667085}.status{padding:12px 14px;border-radius:10px;margin-top:14px;font-weight:650}.ok{background:#eaf7ef;color:#17663a}.warn{background:#fff4e5;color:#925400}.bad{background:#feeeee;color:#a12a2a}table{width:100%;border-collapse:collapse;margin-top:10px}th,td{text-align:left;padding:11px;border-bottom:1px solid #e8edf3;font-size:14px}th{color:#667085;font-size:12px;text-transform:uppercase;letter-spacing:.04em}.formula{background:#f7f9fc;border-radius:9px;padding:12px;font-family:ui-monospace,monospace;font-size:13px;overflow-wrap:anywhere}.foot{font-size:12px;color:#667085}.pill{display:inline-block;padding:5px 9px;border-radius:30px;background:#edf2f8;color:#344054;font-size:12px;font-weight:700}h2{font-size:19px;margin:0 0 12px}h3{font-size:15px;margin:18px 0 8px}.two{display:grid;grid-template-columns:1fr 1fr;gap:16px}.btn{border:0;background:#243b53;color:white;padding:10px 14px;border-radius:9px;font-weight:700;cursor:pointer}.btn:hover{background:#162b40}@media(max-width:760px){.inputs,.grid{grid-template-columns:repeat(2,1fr)}.two{grid-template-columns:1fr}header{display:block}}@media(max-width:440px){.inputs,.grid{grid-template-columns:1fr}h1{font-size:25px}}
+</style>
+</head>
+<body><main class="wrap">
+<header><div><div class="eyebrow">Estudio y diseño del trabajo · Semanas 8–11</div><h1>Herramienta de medición | Luciérnaga</h1><p>Evaluación de capacidad, cumplimiento de demanda, inventario y productividad en régimen.</p></div><span class="pill">Caso 1</span></header>
+<section class="panel"><h2>Entradas del escenario</h2><div class="inputs">
+<div><label for="demand">Demanda (unidades/día)</label><input id="demand" type="number" min="1" step="1" value="300"></div>
+<div><label for="window">Ventana neta (min/día)</label><input id="window" type="number" min="1" step="1" value="420"></div>
+<div><label for="alternative">Alternativa</label><select id="alternative"><option value="ref">Referencia</option><option value="A">Alternativa A</option><option value="B">Alternativa B</option></select></div>
+<div><label for="cTime">Tiempo normal C del piloto B (s)</label><input id="cTime" type="number" min="0.01" step="0.1" value="30"><div class="hint">Solo se activa al elegir B.</div></div>
+</div><div class="hint">Validación: demanda y ventana deben ser números positivos; la demanda debe ser entera. Inventario máximo de material: 350 unidades.</div></section>
+<section class="panel"><h2>Resultados del escenario</h2><div class="grid">
+<div class="metric"><small>Tiempo de ciclo</small><strong id="cycle">90.8 s</strong><span>Segundos por unidad</span></div>
+<div class="metric"><small>Capacidad teórica</small><strong id="capacity">277</strong><span>Unidades por día, redondeo hacia abajo</span></div>
+<div class="metric"><small>Volumen realizable</small><strong id="realizable">277</strong><span>Limitado por capacidad e inventario</span></div>
+<div class="metric"><small>Coste equivalente</small><strong id="cost">€0</strong><span>Por día/turno</span></div>
+</div><div id="status" class="status ok">Cumple demanda</div>
+<div class="grid" style="margin-top:12px">
+<div class="metric"><small>Faltante</small><strong id="shortage">23</strong><span>Unidades/día</span></div>
+<div class="metric"><small>Productividad</small><strong id="productivity">39.6</strong><span>Unidades por hora de ventana neta</span></div>
+<div class="metric"><small>Uso del inventario</small><strong id="inventory">79.1%</strong><span>Volumen realizable / 350</span></div>
+<div class="metric"><small>Estado de material</small><strong id="material">OK</strong><span>Comparación capacidad–inventario</span></div>
+</div></section>
+<div class="two">
+<section class="panel"><h2>Cargas por estación</h2><table><thead><tr><th>Recurso / estación</th><th>Carga</th><th>Interpretación</th></tr></thead><tbody id="loads"></tbody></table><p class="foot">La hoja fuente detalla una partición inicial A+B+C / D+ensayo+E (101.20 s y 76.92 s). Los ciclos de referencia/A/B proceden de otra sección del libro; no se proporcionan cargas desglosadas por estación para esas alternativas. Para no inventar repartos, la aplicación muestra el cuello agregado de cada alternativa y conserva aparte las cargas detalladas iniciales.</p></section>
+<section class="panel"><h2>Fórmulas y supuestos</h2>
+<div class="formula" id="formula"></div>
+<h3>Supuestos visibles</h3><ul class="foot"><li>Capacidad = ⌊ventana neta (min) × 60 / tiempo de ciclo (s)⌋.</li><li>Volumen realizable = mínimo entre capacidad y 350 unidades disponibles.</li><li>Coste equivalente: A = €180/20 = €9 por turno; B = €950/20 = €47.50 por turno; referencia = €0 incremental.</li><li>Productividad mostrada = volumen realizable / horas de ventana neta.</li><li>Para el piloto B se usa el supuesto explícito de ajuste uno a uno: ciclo B = 72 + (C normal ingresado − 30) segundos. Debe validarse contra el anexo patrón.</li><li>Es un cálculo de régimen: no simula variabilidad, paros, secuencias ni dependencia entre observaciones.</li></ul></section>
+</div>
+<section class="panel"><h2>Punto de control: datos fuente que deben contrastarse</h2><table><thead><tr><th>Dato</th><th>Valor registrado</th><th>Nota</th></tr></thead><tbody>
+<tr><td>Ciclos por alternativa (Punto 5)</td><td>Referencia 90.8 s · A 82.8 s · B 72 s</td><td>Base para comparar escenarios</td></tr>
+<tr><td>Partición inicial (Punto 3)</td><td>Estación 1: 101.20 s · Estación 2: 76.92 s</td><td>Cuello 101.20 s; capacidad 249 uds/420 min</td></tr>
+<tr><td>Segunda partición (Punto 3)</td><td>155.12 s al sumar celdas</td><td>El libro muestra 156.5 s; discrepancia a revisar</td></tr>
+<tr><td>Tiempo normal C (Punto 2)</td><td>39.67 s aproximadamente</td><td>El piloto B usa por defecto 30 s; no son el mismo dato</td></tr>
+</tbody></table></section>
+<footer class="foot">Herramienta académica para el Caso 1 Luciérnaga. Confirmar las hipótesis y cifras con el anexo patrón liberado por el docente antes de presentar resultados definitivos.</footer>
+</main>
+<script>
+const $=id=>document.getElementById(id);
+function fmt(n,d=2){return Number(n).toLocaleString('es-MX',{maximumFractionDigits:d,minimumFractionDigits:0})}
+function calculate(){
+ const demand=Number($('demand').value), windowMin=Number($('window').value), alt=$('alternative').value, c=Number($('cTime').value);
+ $('cTime').disabled=alt!=='B';
+ const invalid= !Number.isInteger(demand)||demand<=0||!Number.isFinite(windowMin)||windowMin<=0||(alt==='B'&&(!Number.isFinite(c)||c<=0));
+ if(invalid){$('status').className='status bad';$('status').textContent='Entrada inválida: demanda entera positiva, ventana positiva y tiempo C positivo cuando se usa B.';return;}
+ const cycle=alt==='ref'?90.8:alt==='A'?82.8:72+(c-30);
+ const capacity=Math.floor(windowMin*60/cycle);
+ const realizable=Math.min(capacity,350);
+ const shortage=Math.max(0,demand-realizable);
+ const cost=alt==='A'?9:alt==='B'?47.5:0;
+ const productivity=realizable/(windowMin/60);
+ $('cycle').textContent=fmt(cycle)+' s';$('capacity').textContent=fmt(capacity,0);$('realizable').textContent=fmt(realizable,0);$('cost').textContent='€'+fmt(cost,2);
+ $('shortage').textContent=fmt(shortage,0);$('productivity').textContent=fmt(productivity,1);$('inventory').textContent=fmt(realizable/350*100,1)+'%';$('material').textContent=capacity>350?'REVISAR':'OK';
+ $('status').className='status '+(shortage===0?'ok':'warn');
+ $('status').textContent=(shortage===0?'Sí cumple demanda. ':'No cumple demanda. ')+'Volumen realizable: '+realizable+' unidades; faltante: '+shortage+'.'+(capacity>350?' Advertencia: capacidad calculada ('+capacity+') supera el inventario máximo de 350 unidades.':'');
+ const base=alt==='B'?'72 + ('+fmt(c,1)+' − 30) = '+fmt(cycle,2)+' s':fmt(cycle,2)+' s';
+ $('formula').textContent='TC = '+base+'\nCapacidad = floor(('+fmt(windowMin,1)+' min × 60 s/min) / '+fmt(cycle,2)+' s) = '+capacity+' unidades/día\nRealizable = min('+capacity+', 350) = '+realizable+' unidades/día\nFaltante = max(0, '+demand+' − '+realizable+') = '+shortage+' unidades/día\nProductividad = '+realizable+' / ('+fmt(windowMin/60,2)+' h) = '+fmt(productivity,2)+' unidades/h';
+ const initial1=20*1.15+28*1.15+40*1.15;
+ const initial2=22.8*1.15+30+18*1.15;
+ $('loads').innerHTML='<tr><td>Partición inicial · Estación 1 (A+B+C)</td><td>'+fmt(initial1)+' s</td><td>101.20 s · cuello inicial</td></tr><tr><td>Partición inicial · Estación 2 (D+ensayo+E)</td><td>'+fmt(initial2)+' s</td><td>76.92 s</td></tr><tr><td>Escenario '+(alt==='ref'?'Referencia':alt)+'</td><td>'+fmt(cycle)+' s</td><td>Cuello agregado usado para capacidad</td></tr>';
+}
+['demand','window','alternative','cTime'].forEach(id=>$(id).addEventListener('input',calculate));calculate();
+</script></body></html>
