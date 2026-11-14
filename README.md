@@ -3,7 +3,7 @@
 Proyecto de Estudio y Diseño del Trabajo.
 
 ## Aplicación
-- **Vista previa web:** https://htmlpreview.github.io/?https://raw.githubusercontent.com/VictorHugocervantes28/caso_1/main/app/index.html
+- **Vista previa web:** https://raw.githack.com/VictorHugocervantes28/caso_1/main/app/index.html
 - **Código fuente:** [app/index.html](app/index.html)
 
 La vista previa usa un servicio externo para representar el HTML del repositorio. Si no carga, descarga app/index.html y ábrelo directamente en Chrome o Edge.
